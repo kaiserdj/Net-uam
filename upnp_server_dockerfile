@@ -1,0 +1,17 @@
+FROM ubuntu:latest
+USER root
+ARG DEBIAN_FRONTEND=noninteractive
+ARG NETWORK_ID
+ENV NETWORK_ID=$NETWORK_ID
+ARG NETWORK_IP
+ENV NETWORK_IP=$NETWORK_IP
+ARG EXT_INTERFACE
+ENV EXT_INTERFACE=$EXT_INTERFACE
+RUN apt-get update 
+RUN apt-get full-upgrade -y
+RUN printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d
+RUN bash -c "install -m755 <(printf '#!/bin/sh\nexit 0') /usr/sbin/policy-rc.d"
+RUN RUNLEVEL=1 apt-get install miniupnpd util-linux ethtool miniupnpc -y -q
+COPY upnp_server.sh /tmp/upnp_server.sh
+RUN chmod +x /tmp/upnp_server.sh
+ENTRYPOINT ["/tmp/upnp_server.sh"]

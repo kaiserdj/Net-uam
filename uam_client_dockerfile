@@ -1,0 +1,8 @@
+FROM debian:buster-slim
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update 
+RUN apt-get full-upgrade -y
+RUN apt-get install wget libglib2.0-0 netbase -y
+COPY uam_client.sh /opt/uam_client.sh
+RUN chmod +x /opt/uam_client.sh
+ENTRYPOINT /opt/uam_client.sh

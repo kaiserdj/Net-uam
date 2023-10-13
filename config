@@ -1,0 +1,10 @@
+NUM_INSTANCES=1
+PK=7038B5F***..
+INITIAL_PORT=21101
+EXT_INTERFACE=eth0
+NETWORK_NAME=net-uam
+CREATE_FILELOG=1      # 1->ON   0->OFF
+SHOW_LOG_CONSOLE=1    # 1->ON   0->OFF
+SHOW_DEBUG_CONSOLE=1  # 1->ON   0->OFF
+FC='\033[0m'    #Main color
+SC='\033[0m'    #Secondary color
